@@ -1,13 +1,16 @@
-import React, { useEffect, useRef, version } from 'react'
+import React, { FC, useEffect, useRef, version } from 'react'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { Button, Alert, StyleSheet, Text, TouchableOpacity, View, Image, FlatList } from 'react-native';
 import { DetailsProps } from '../navigation/Navigator';
 import Swiper from 'react-native-swiper';
 import { Product } from '../data/Product';
 import { Dimensions } from 'react-native';
+import { ProductTitleCard } from '../components/ProductItemOri';
+import Divider from '../common/Divider';
+import SelectionCard from '../components/SelectionCard';
 
 
-const { width, height } = Dimensions.get('window');
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const DetailsScreen = ({ navigation, route }: DetailsProps) => {
     const { product } = route.params
@@ -22,6 +25,12 @@ const DetailsScreen = ({ navigation, route }: DetailsProps) => {
                     'https://picsum.photos/200/300',
                     'https://picsum.photos/200/300',
                 ]} />
+
+            <ProductTitleCard name={product.name} price={product.price} origin_price={product.origin_price} />
+            <Divider />
+            <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 10 }}>Select color</Text>
+            <SelectionCard stringList={['red', 'blue', 'green']} />
+            <Divider />
         </View>
     )
 }
@@ -34,7 +43,7 @@ const ImageSwiper = ({ images }: ImageSwiperProps) => {
 
     return (
         <View style={[styles.swipeContainer]}>
-            <Swiper showsButtons loop={false}>
+            <Swiper showsButtons loop={true}>
                 {images.map((url, index) => (
                     <View key={index} style={styles.imageContainer}>
                         <Image source={{ uri: url }} style={styles.image} />
@@ -48,7 +57,7 @@ const ImageSwiper = ({ images }: ImageSwiperProps) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        padding: 20,
         backgroundColor: 'white',
     },
 
@@ -60,7 +69,7 @@ const styles = StyleSheet.create({
     },
 
     swipeContainer: {
-        height: height * 3 / 7,
+        height: SCREEN_HEIGHT * 3 / 7,
     },
     imageContainer: {
         flex: 1,

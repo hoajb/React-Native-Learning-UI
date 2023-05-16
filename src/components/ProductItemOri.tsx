@@ -20,16 +20,27 @@ export default function ProductItemOri(props: ProductItemOriProps) {
                 <Image
                     style={styles.image}
                     source={{ uri: props.uri }} />
-                <Text numberOfLines={1} style={[styles.text, { color: 'gray', paddingVertical: 10 }]}> {props.name} </Text>
-                <View style={[styles.container, { flexDirection: 'row' }]}>
-                    <Text style={styles.text}> {'$' + props.price} </Text>
-                    <Text style={[styles.text, { textDecorationLine: "line-through", color: 'gray' }]}> {'$' + props.origin_price} </Text>
-                    <Text style={[styles.text, { color: 'blue' }]}> {Math.floor(100 - (props.price / props.origin_price) * 100) + '% Off'} </Text>
-                </View>
+                <ProductTitleCard name={props.name} price={props.price} origin_price={props.origin_price} />
 
             </Card>
         </View>
     )
+}
+
+export interface ProductTitleCardProps {
+    id?: number,
+    name: string,
+    price: Double,
+    origin_price: Double,
+}
+
+export function ProductTitleCard(props: ProductTitleCardProps) {
+    return <View><Text numberOfLines={1} style={[styles.text, { color: 'gray', paddingVertical: 10 }]}> {props.name} </Text>
+        <View style={[styles.container, { flexDirection: 'row' }]}>
+            <Text style={styles.text}> {'$' + props.price} </Text>
+            <Text style={[styles.text, { textDecorationLine: "line-through", color: 'gray' }]}> {'$' + props.origin_price} </Text>
+            <Text style={[styles.text, { color: 'blue' }]}> {Math.floor(100 - (props.price / props.origin_price) * 100) + '% Off'} </Text>
+        </View></View>
 }
 
 
