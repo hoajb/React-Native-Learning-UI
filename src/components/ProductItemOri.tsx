@@ -9,6 +9,7 @@ export interface ProductItemOriProps {
     uri: string,
     price: Double,
     origin_price: Double,
+    description: string,
     selected?: ((id: number) => void)
 }
 

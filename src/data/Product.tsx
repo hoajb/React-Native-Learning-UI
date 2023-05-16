@@ -5,4 +5,5 @@ export interface Product {
     uri: string,
     price: number,
     origin_price: number,
+    description: string,
 }

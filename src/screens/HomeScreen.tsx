@@ -8,7 +8,6 @@ import { APIListProduct } from '../constants/dummy';
 import { useState, useEffect } from 'react';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { HomeProps } from '../navigation/Navigator';
-import { Product } from '../data/Product';
 
 export default function HomeScreen({ navigation }: HomeProps) {
     const listMap: ProductItemOriProps[] = React.useMemo(() => {
@@ -16,6 +15,7 @@ export default function HomeScreen({ navigation }: HomeProps) {
             const item = obj.attributes
             return {
                 name: item.name,
+                description: item.description,
                 uri: `https://picsum.photos/200/300?random=${Math.random()}`,
                 price: Math.floor(Number(item.price)), // return NaN
                 origin_price: Math.floor(+item.price + 50) // return 0
@@ -55,6 +55,7 @@ export default function HomeScreen({ navigation }: HomeProps) {
                                     price: item.price,
                                     origin_price: item.origin_price,
                                     uri: item.uri,
+                                    description: item.description,
                                 }
                             })
                         }}
@@ -65,6 +66,7 @@ export default function HomeScreen({ navigation }: HomeProps) {
                             price={item.price}
                             origin_price={item.origin_price}
                             uri={item.uri}
+                            description={item.description}
                         />
                     </TouchableOpacity>
                 }
