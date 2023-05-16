@@ -2,10 +2,11 @@ import { createStackNavigator, StackScreenProps } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import { Product } from '../data/Product';
 
 export type RootStackParamList = {
   HomeScreen: { title: String }
-  DetailsScreen: { itemId: number; itemName: string }
+  DetailsScreen: { product: Product }
 }
 
 export type HomeProps = StackScreenProps<RootStackParamList, "HomeScreen">

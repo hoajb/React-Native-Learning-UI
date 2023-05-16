@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 
 export interface SearchBoxProps {
     onChangeText: (text: String) => void
@@ -30,6 +30,7 @@ export default SearchBox;
 const styles = StyleSheet.create({
     search_box: {
         borderColor: 'gray',
+        backgroundColor: 'white',
         borderRadius: 4,
         borderWidth: 1,
         padding: 10,
